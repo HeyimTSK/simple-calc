@@ -20,11 +20,11 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 6%;
 
-    /* International Klein Blue — shock color, hover only */
-    --primary: 230 96% 38%;
+    /* Shock color — Green, hover only */
+    --primary: 145 70% 32%;
     --primary-foreground: 40 14% 96%;
-    --primary-soft: 230 96% 95%;
-    --primary-glow: 230 96% 50%;
+    --primary-soft: 145 60% 94%;
+    --primary-glow: 145 70% 42%;
 
     --secondary: 0 0% 92%;
     --secondary-foreground: 0 0% 6%;
@@ -32,7 +32,7 @@
     --muted: 0 0% 90%;
     --muted-foreground: 0 0% 35%;
 
-    --accent: 230 96% 38%;
+    --accent: 145 70% 32%;
     --accent-foreground: 40 14% 96%;
 
     --success: 0 0% 6%;
@@ -49,12 +49,12 @@
 
     --border: 0 0% 82%;
     --input: 0 0% 82%;
-    --ring: 230 96% 38%;
+    --ring: 145 70% 32%;
 
     --radius: 0rem;
 
     /* Gradients reduced to flats — Swiss Kinetic rejects gradients */
-    --gradient-primary: hsl(230 96% 38%);
+    --gradient-primary: hsl(145 70% 32%);
     --gradient-hero: hsl(0 0% 6%);
     --gradient-soft: hsl(40 14% 96%);
     --gradient-card: hsl(0 0% 100%);
@@ -68,12 +68,12 @@
 
     --sidebar-background: 40 14% 96%;
     --sidebar-foreground: 0 0% 6%;
-    --sidebar-primary: 230 96% 38%;
+    --sidebar-primary: 145 70% 32%;
     --sidebar-primary-foreground: 40 14% 96%;
     --sidebar-accent: 0 0% 92%;
     --sidebar-accent-foreground: 0 0% 6%;
     --sidebar-border: 0 0% 82%;
-    --sidebar-ring: 230 96% 38%;
+    --sidebar-ring: 145 70% 32%;
   }
 
   .dark {
@@ -83,15 +83,15 @@
     --card-foreground: 40 14% 96%;
     --popover: 0 0% 9%;
     --popover-foreground: 40 14% 96%;
-    --primary: 230 96% 55%;
+    --primary: 145 65% 48%;
     --primary-foreground: 0 0% 6%;
-    --primary-soft: 230 60% 18%;
-    --primary-glow: 230 96% 65%;
+    --primary-soft: 145 50% 16%;
+    --primary-glow: 145 70% 58%;
     --secondary: 0 0% 14%;
     --secondary-foreground: 40 14% 96%;
     --muted: 0 0% 14%;
     --muted-foreground: 0 0% 65%;
-    --accent: 230 96% 55%;
+    --accent: 145 65% 48%;
     --accent-foreground: 0 0% 6%;
     --success: 40 14% 96%;
     --success-foreground: 0 0% 6%;
@@ -104,19 +104,19 @@
     --destructive-soft: 0 0% 14%;
     --border: 0 0% 22%;
     --input: 0 0% 22%;
-    --ring: 230 96% 55%;
-    --gradient-primary: hsl(230 96% 55%);
+    --ring: 145 65% 48%;
+    --gradient-primary: hsl(145 65% 48%);
     --gradient-hero: hsl(40 14% 96%);
     --gradient-soft: hsl(0 0% 6%);
     --gradient-card: hsl(0 0% 9%);
     --sidebar-background: 0 0% 6%;
     --sidebar-foreground: 40 14% 96%;
-    --sidebar-primary: 230 96% 55%;
+    --sidebar-primary: 145 65% 48%;
     --sidebar-primary-foreground: 0 0% 6%;
     --sidebar-accent: 0 0% 14%;
     --sidebar-accent-foreground: 40 14% 96%;
     --sidebar-border: 0 0% 22%;
-    --sidebar-ring: 230 96% 55%;
+    --sidebar-ring: 145 65% 48%;
   }
 }
 
@@ -142,12 +142,6 @@
     line-height: 0.95;
   }
 
-  /* Hide native cursor on desktop — replaced with custom mask cursor */
-  @media (hover: hover) and (pointer: fine) {
-    html.kinetic-cursor, html.kinetic-cursor * {
-      cursor: none !important;
-    }
-  }
 }
 
 @layer components {
@@ -206,26 +200,6 @@
   .corner-frame.br { bottom: 1.5rem; right: 1.5rem; }
 
   /* Inverted mask cursor */
-  .kinetic-cursor-dot {
-    position: fixed;
-    top: 0; left: 0;
-    width: 56px; height: 56px;
-    border-radius: 9999px;
-    background: hsl(0 0% 6%);
-    mix-blend-mode: difference;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate3d(-100px, -100px, 0);
-    transition: width 350ms cubic-bezier(0.16,1,0.3,1),
-                height 350ms cubic-bezier(0.16,1,0.3,1),
-                background-color 200ms ease;
-    will-change: transform;
-  }
-  .kinetic-cursor-dot.is-hover {
-    width: 88px; height: 88px;
-    background: hsl(230 96% 38%);
-  }
-
   /* Link underline reveal */
   .kinetic-link {
     position: relative;
