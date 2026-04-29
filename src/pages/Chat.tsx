@@ -165,7 +165,6 @@ const Chat = () => {
             </div>
           )}
 
-          {messages.map((m, i) => (
           {messages.map((m, i) => {
             const isUser = m.role === "user";
             const isEmpty = !m.content;
