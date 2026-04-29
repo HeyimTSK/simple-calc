@@ -9,7 +9,6 @@ import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import Onboarding from "./pages/Onboarding";
 import AppLayout from "./components/AppLayout";
-import CornerFrame from "./components/CornerFrame";
 import Dashboard from "./pages/Dashboard";
 import Recommendations from "./pages/Recommendations";
 import Chat from "./pages/Chat";
@@ -30,7 +29,6 @@ const App = () => (
       <Sonner position="top-center" />
       <BrowserRouter>
         <AuthProvider>
-          <CornerFrame />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
