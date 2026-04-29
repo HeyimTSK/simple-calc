@@ -47,6 +47,16 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        operator: {
+          DEFAULT: "hsl(var(--operator))",
+          foreground: "hsl(var(--operator-foreground))",
+        },
+        key: {
+          DEFAULT: "hsl(var(--key))",
+          foreground: "hsl(var(--key-foreground))",
+          muted: "hsl(var(--key-muted))",
+          "muted-foreground": "hsl(var(--key-muted-foreground))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
