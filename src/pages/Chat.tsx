@@ -7,6 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Send, Sparkles, Loader2, User as UserIcon, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type Msg = { id?: string; role: "user" | "assistant"; content: string };
 
@@ -163,25 +165,51 @@ const Chat = () => {
             </div>
           )}
 
-          {messages.map((m, i) => (
-            <div key={i} className={cn("flex gap-3 animate-fade-in", m.role === "user" ? "flex-row-reverse" : "")}>
-              <div className={cn(
-                "h-8 w-8 rounded-lg flex items-center justify-center flex-shrink-0",
-                m.role === "user" ? "bg-muted" : "bg-gradient-primary"
-              )}>
-                {m.role === "user" ? <UserIcon className="h-4 w-4" /> : <Sparkles className="h-4 w-4 text-primary-foreground" />}
+          {messages.map((m, i) => {
+            const isUser = m.role === "user";
+            const isEmpty = !m.content;
+            const isLastStreaming = streaming && i === messages.length - 1 && isEmpty;
+            return (
+              <div key={i} className={cn("flex gap-3 animate-fade-in", isUser ? "flex-row-reverse" : "")}>
+                <div className={cn(
+                  "h-8 w-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-1",
+                  isUser ? "bg-muted" : "bg-gradient-primary"
+                )}>
+                  {isUser ? <UserIcon className="h-4 w-4" /> : <Sparkles className="h-4 w-4 text-primary-foreground" />}
+                </div>
+                <div className={cn(
+                  "rounded-2xl px-4 py-3 max-w-[85%] md:max-w-[75%] text-[15px] leading-7",
+                  isUser
+                    ? "bg-primary text-primary-foreground rounded-tr-sm"
+                    : "bg-muted text-foreground rounded-tl-sm"
+                )}>
+                  {isLastStreaming ? (
+                    <span className="inline-flex gap-1 py-1">
+                      <span className="h-2 w-2 rounded-full bg-current animate-pulse" />
+                      <span className="h-2 w-2 rounded-full bg-current animate-pulse" style={{ animationDelay: "150ms" }} />
+                      <span className="h-2 w-2 rounded-full bg-current animate-pulse" style={{ animationDelay: "300ms" }} />
+                    </span>
+                  ) : isUser ? (
+                    <div className="whitespace-pre-wrap">{m.content}</div>
+                  ) : (
+                    <div className="prose prose-sm dark:prose-invert max-w-none
+                      prose-p:my-2 prose-p:leading-7
+                      prose-headings:font-display prose-headings:font-semibold prose-headings:mt-4 prose-headings:mb-2 prose-headings:text-foreground
+                      prose-h1:text-lg prose-h2:text-base prose-h3:text-base
+                      prose-strong:text-foreground prose-strong:font-semibold
+                      prose-ul:my-2 prose-ul:pl-5 prose-ol:my-2 prose-ol:pl-5
+                      prose-li:my-1 prose-li:marker:text-primary
+                      prose-code:bg-background/60 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-[13px] prose-code:before:content-none prose-code:after:content-none
+                      prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                      prose-hr:my-3 prose-hr:border-border
+                      prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.content}</ReactMarkdown>
+                    </div>
+                  )}
+                </div>
               </div>
-              <div className={cn(
-                "rounded-2xl px-4 py-3 max-w-[85%] md:max-w-[75%] text-sm leading-relaxed",
-                m.role === "user"
-                  ? "bg-primary text-primary-foreground rounded-tr-sm"
-                  : "bg-muted text-foreground rounded-tl-sm"
-              )}>
-                {m.content || (streaming && i === messages.length - 1 ? <span className="inline-flex gap-1"><span className="h-2 w-2 rounded-full bg-current animate-pulse" /><span className="h-2 w-2 rounded-full bg-current animate-pulse" style={{animationDelay: "150ms"}} /><span className="h-2 w-2 rounded-full bg-current animate-pulse" style={{animationDelay: "300ms"}} /></span> : "")}
-                <div className="whitespace-pre-wrap">{m.content}</div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Input */}
