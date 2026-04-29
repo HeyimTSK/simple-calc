@@ -134,9 +134,10 @@ const Calculator = () => {
     <button
       onClick={onClick}
       aria-label={ariaLabel}
+      style={{ boxShadow: "var(--shadow-key)" }}
       className={cn(
-        "h-16 rounded-2xl text-2xl font-medium transition-smooth",
-        "active:scale-95 hover:brightness-110 shadow-key",
+        "h-16 rounded-2xl text-2xl font-medium transition-all duration-200",
+        "active:scale-95 hover:brightness-110",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         span && "col-span-2",
         variant === "key" && "bg-key text-key-foreground",
