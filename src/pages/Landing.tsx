@@ -8,24 +8,16 @@ const Landing = () => {
   const { user } = useAuth();
   const ctaTo = user ? "/app" : "/auth";
   const [wide, setWide] = useState(false);
+  const [offset, setOffset] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setWide(window.scrollY > 80);
+    const onScroll = () => {
+      setWide(window.scrollY > 80);
+      setOffset(window.scrollY);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Parallax for image / accent block
-  const [offset, setOffset] = useState(0);
-  useEffect(() => {
-    let raf = 0;
-    const tick = () => {
-      setOffset(window.scrollY);
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
   }, []);
 
   const features = [
@@ -39,21 +31,21 @@ const Landing = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      {/* Hero */}
-      <section ref={heroRef} className="relative px-6 md:px-10 pt-32 pb-32 min-h-screen flex flex-col justify-between">
-        <div className="grid grid-cols-12 gap-4 items-end flex-1">
-          <div className="col-span-12">
-            <p className="mono-label text-muted-foreground mb-8">
-              Index / 001 — Personal Finance, Indian Households
-            </p>
-            <h1 className={`kinetic-display ${wide ? "is-wide" : ""} text-foreground`}
-                style={{ fontSize: "clamp(3.5rem, 14vw, 18rem)" }}>
-              MONEY,<br />FRAMED.
-            </h1>
-          </div>
+      {/* Hero — leave room for top corner frame (logo TL, menu TR) */}
+      <section ref={heroRef} className="relative px-6 md:px-12 pt-28 md:pt-32 pb-24 md:pb-32 min-h-[92vh] flex flex-col justify-between">
+        <div>
+          <p className="mono-label text-muted-foreground mb-10">
+            Index / 001 — Personal Finance, Indian Households
+          </p>
+          <h1
+            className={`kinetic-display ${wide ? "is-wide" : ""}`}
+            style={{ fontSize: "clamp(3rem, 13vw, 16rem)" }}
+          >
+            MONEY,<br />FRAMED.
+          </h1>
         </div>
 
-        <div className="grid grid-cols-12 gap-4 mt-16">
+        <div className="grid grid-cols-12 gap-4 mt-20">
           <div className="col-span-12 md:col-span-5">
             <p className="text-base md:text-lg leading-snug max-w-md">
               Honest, plain-English money advice powered by AI. No jargon. No sales.
@@ -61,44 +53,42 @@ const Landing = () => {
             </p>
           </div>
           <div className="col-span-12 md:col-span-3 md:col-start-9 flex md:justify-end items-end">
-            <Link
-              to={ctaTo}
-              className="mono-label inline-flex items-center gap-2 kinetic-link"
-            >
-              {user ? "Open Dashboard" : "Begin →"}
+            <Link to={ctaTo} className="mono-label inline-flex items-center gap-2 kinetic-link">
+              {user ? "Open Dashboard →" : "Begin →"}
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Manifesto strip */}
-      <section className="border-t border-foreground/15 px-6 md:px-10 py-32">
+      {/* Manifesto */}
+      <section className="border-t border-foreground/15 px-6 md:px-12 py-24 md:py-32">
         <div className="grid grid-cols-12 gap-4">
           <div className="col-span-12 md:col-span-2">
             <p className="mono-label text-muted-foreground">§ 002 — Thesis</p>
           </div>
           <div className="col-span-12 md:col-span-9">
-            <p className="kinetic-display text-foreground"
-               style={{ fontSize: "clamp(2rem, 6vw, 6rem)" }}>
+            <p className="kinetic-display" style={{ fontSize: "clamp(1.75rem, 5.5vw, 5.5rem)" }}>
               Built for real Indian life — whether you earn ₹25,000 or ₹2,00,000 a month.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Feature grid — editorial */}
-      <section className="border-t border-foreground/15 px-6 md:px-10 py-24">
+      {/* Feature grid */}
+      <section className="border-t border-foreground/15 px-6 md:px-12 py-24">
         <div className="grid grid-cols-12 gap-4 mb-16">
           <p className="mono-label text-muted-foreground col-span-12 md:col-span-2">§ 003 — Index</p>
-          <h2 className="col-span-12 md:col-span-10 kinetic-display"
-              style={{ fontSize: "clamp(2rem, 5vw, 5rem)" }}>
+          <h2 className="col-span-12 md:col-span-10 kinetic-display" style={{ fontSize: "clamp(2rem, 5vw, 5rem)" }}>
             Six instruments.
           </h2>
         </div>
 
-        <div className="grid grid-cols-12 gap-x-4 gap-y-12 border-t border-foreground/15">
+        <div className="grid grid-cols-12 gap-x-4 gap-y-0 border-t border-foreground/15">
           {features.map((f) => (
-            <div key={f.n} className="col-span-12 md:col-span-6 lg:col-span-4 border-b border-foreground/15 pt-6 pb-12 group">
+            <div
+              key={f.n}
+              className="col-span-12 md:col-span-6 lg:col-span-4 border-b border-foreground/15 pt-8 pb-12 md:px-2 group"
+            >
               <div className="flex items-start justify-between mb-12">
                 <span className="mono-label text-muted-foreground">{f.n}</span>
                 <span className="mono-label opacity-0 group-hover:opacity-100 transition-smooth text-primary">→</span>
@@ -112,11 +102,16 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Parallax accent */}
-      <section className="border-t border-foreground/15 px-6 md:px-10 py-40 relative overflow-hidden">
+      {/* Action */}
+      <section className="border-t border-foreground/15 px-6 md:px-12 py-32 md:py-40 relative overflow-hidden">
         <div
-          className="absolute right-[-10%] top-1/2 -translate-y-1/2 mono-label text-muted-foreground/40 whitespace-nowrap"
-          style={{ transform: `translate3d(${-offset * 0.1}px, -50%, 0)`, fontSize: "clamp(4rem, 12vw, 14rem)", letterSpacing: "0.02em" }}
+          aria-hidden
+          className="absolute right-[-10%] top-1/2 mono-label text-muted-foreground/30 whitespace-nowrap pointer-events-none"
+          style={{
+            transform: `translate3d(${-offset * 0.1}px, -50%, 0)`,
+            fontSize: "clamp(4rem, 12vw, 14rem)",
+            letterSpacing: "0.02em",
+          }}
         >
           ◆ ◆ ◆ ◆ ◆ ◆ ◆
         </div>
@@ -124,7 +119,7 @@ const Landing = () => {
           <div className="col-span-12 md:col-span-8">
             <p className="mono-label text-muted-foreground mb-6">§ 004 — Action</p>
             <h2 className="kinetic-display" style={{ fontSize: "clamp(2.5rem, 9vw, 10rem)" }}>
-              TAKE<br/>CHARGE.
+              TAKE<br />CHARGE.
             </h2>
             <div className="mt-12">
               <Button
@@ -141,7 +136,8 @@ const Landing = () => {
         </div>
       </section>
 
-      <footer className="border-t border-foreground/15 px-6 md:px-10 py-10">
+      {/* Footer — leave room for bottom corner frame */}
+      <footer className="border-t border-foreground/15 px-6 md:px-12 py-12 pb-20">
         <div className="grid grid-cols-12 gap-4">
           <p className="col-span-12 md:col-span-6 mono-label text-muted-foreground">
             ⚠ AI-generated guidance, not professional financial advice.
