@@ -42,7 +42,11 @@ const Landing = () => {
             Honest, plain-English money advice powered by AI. No jargon, no sales — just clear next steps for emergency funds, EMIs, insurance, and SIPs.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center animate-slide-up" style={{ animationDelay: "200ms" }}>
-            <Button asChild size="lg" className="h-12 px-8 bg-gradient-primary hover:opacity-90 shadow-elegant text-base">
+            <Button
+              asChild
+              size="lg"
+              className="h-12 px-8 rounded-full bg-gradient-primary text-primary-foreground hover:opacity-90 shadow-elegant text-base [&]:bg-gradient-primary"
+            >
               <Link to={ctaTo}>
                 {user ? "Open dashboard" : "Get started — it's free"} <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
