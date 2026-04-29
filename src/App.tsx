@@ -9,7 +9,6 @@ import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import Onboarding from "./pages/Onboarding";
 import AppLayout from "./components/AppLayout";
-import KineticCursor from "./components/KineticCursor";
 import CornerFrame from "./components/CornerFrame";
 import Dashboard from "./pages/Dashboard";
 import Recommendations from "./pages/Recommendations";
@@ -31,7 +30,6 @@ const App = () => (
       <Sonner position="top-center" />
       <BrowserRouter>
         <AuthProvider>
-          <KineticCursor />
           <CornerFrame />
           <Routes>
             <Route path="/" element={<Index />} />
