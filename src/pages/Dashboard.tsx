@@ -118,7 +118,7 @@ const Dashboard = () => {
           <div className={cn("absolute top-0 right-0 px-2 py-1 text-xs font-semibold rounded-bl-xl", toneClasses[data.sl.tone])}>
             {data.sl.label}
           </div>
-          <p className="text-xs text-muted-foreground font-medium">Health score</p>
+          <p className="text-xs text-muted-foreground font-medium">Finance score</p>
           <p className="text-3xl font-display font-bold mt-1 gradient-text">{data.hs}<span className="text-base text-muted-foreground font-normal">/100</span></p>
           <Progress value={data.hs} className="h-1.5 mt-3" />
         </Card>

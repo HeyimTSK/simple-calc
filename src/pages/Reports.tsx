@@ -49,7 +49,7 @@ const Reports = () => {
             </div>
           </div>
 
-          <Section title="Health Score">
+          <Section title="Finance Score">
             <div className="flex items-center gap-4">
               <div className="text-5xl font-display font-bold gradient-text">{hs}<span className="text-xl text-muted-foreground">/100</span></div>
               <div>
