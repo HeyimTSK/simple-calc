@@ -67,7 +67,7 @@ const Landing = () => {
             <Card className="relative p-6 md:p-8 border-border/60 shadow-elegant bg-gradient-card">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="stat-card">
-                  <p className="text-xs text-muted-foreground font-medium mb-1">Health score</p>
+                  <p className="text-xs text-muted-foreground font-medium mb-1">Finance score</p>
                   <p className="text-3xl font-display font-bold text-success">82</p>
                   <p className="text-xs text-success mt-1">Excellent · ↑ 6 from last month</p>
                 </div>
