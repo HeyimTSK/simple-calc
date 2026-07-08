@@ -17,7 +17,7 @@ import {
 } from "@/lib/finance";
 import {
   TrendingUp, TrendingDown, AlertCircle, Sparkles, ArrowRight, Heart,
-  ShieldAlert, ShieldCheck, MessageCircle, Target, Users, PiggyBank
+  ShieldAlert, ShieldCheck, MessageCircle, Target, Users, PiggyBank, ExternalLink
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
