@@ -340,6 +340,7 @@ export type Risk = {
   level: "high" | "medium" | "low";
   title: string;
   description: string;
+  link?: { label: string; url: string };
 };
 
 export const computeRisks = (
@@ -382,6 +383,7 @@ export const computeRisks = (
       title: "No insurance protection",
       description:
         "One hospital stay can wipe out years of savings. Even a basic ₹5L health policy costs less than ₹500/month.",
+      link: { label: "Learn More", url: "https://www.policybazaar.com/" },
     });
   } else if (p.insurance_type === "health" && p.dependents > 0) {
     risks.push({
