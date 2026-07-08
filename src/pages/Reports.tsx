@@ -110,7 +110,16 @@ const Reports = () => {
           {risks.length > 0 && (
             <Section title="Risks & priorities">
               <ul className="space-y-2 list-disc pl-5">
-                {risks.map(r => <li key={r.id} className="text-sm"><strong>{r.title}.</strong> <span className="text-muted-foreground">{r.description}</span></li>)}
+                {risks.map(r => (
+                  <li key={r.id} className="text-sm">
+                    <strong>{r.title}.</strong> <span className="text-muted-foreground">{r.description}</span>
+                    {r.link && (
+                      <a href={r.link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 ml-1 text-xs font-medium text-primary hover:underline">
+                        {r.link.label} <ExternalLink className="h-3 w-3" />
+                      </a>
+                    )}
+                  </li>
+                ))}
               </ul>
             </Section>
           )}

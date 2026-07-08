@@ -158,15 +158,20 @@ const Dashboard = () => {
               )}>
                 <AlertCircle className="h-5 w-5" />
               </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <h3 className="font-display font-semibold">{r.title}</h3>
-                  <Badge variant="outline" className={cn("text-xs", r.level === "high" ? "border-destructive/40 text-destructive" : "border-warning/40")}>
-                    {r.level === "high" ? "High priority" : "Watch out"}
-                  </Badge>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="font-display font-semibold">{r.title}</h3>
+                    <Badge variant="outline" className={cn("text-xs", r.level === "high" ? "border-destructive/40 text-destructive" : "border-warning/40")}>
+                      {r.level === "high" ? "High priority" : "Watch out"}
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-1">{r.description}</p>
+                  {r.link && (
+                    <a href={r.link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-2 text-xs font-medium text-primary hover:underline">
+                      {r.link.label} <ExternalLink className="h-3 w-3" />
+                    </a>
+                  )}
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">{r.description}</p>
-              </div>
             </Card>
           ))}
           {data.risks.length > 2 && (

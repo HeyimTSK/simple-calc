@@ -99,6 +99,11 @@ const Recommendations = () => {
               <div className="flex-1 min-w-0">
                 <h3 className="font-display font-semibold text-sm md:text-base">{r.title}</h3>
                 <p className="text-sm text-muted-foreground mt-1">{r.description}</p>
+                {r.link && (
+                  <a href={r.link.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 mt-3 text-xs font-medium text-primary hover:underline">
+                    {r.link.label} <ExternalLink className="h-3 w-3" />
+                  </a>
+                )}
               </div>
             </Card>
           ))}
