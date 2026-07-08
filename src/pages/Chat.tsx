@@ -203,7 +203,30 @@ const Chat = () => {
                       prose-a:text-primary prose-a:no-underline hover:prose-a:underline
                       prose-hr:my-3 prose-hr:border-border
                       prose-blockquote:border-l-primary prose-blockquote:text-muted-foreground">
-                      <ReactMarkdown remarkPlugins={[remarkGfm]}>{m.content}</ReactMarkdown>
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          a: ({ href, children }) => {
+                            const isPolicyBazar = href?.includes("policybazaar.com");
+                            if (isPolicyBazar) {
+                              return (
+                                <a
+                                  href={href}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1.5 mt-2 px-3 py-1.5 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-smooth no-underline"
+                                >
+                                  {children}
+                                  <ExternalLink className="h-3.5 w-3.5" />
+                                </a>
+                              );
+                            }
+                            return <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>;
+                          }
+                        }}
+                      >
+                        {m.content}
+                      </ReactMarkdown>
                     </div>
                   )}
                 </div>
