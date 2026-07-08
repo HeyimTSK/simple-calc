@@ -19,7 +19,7 @@ const Landing = () => {
           <div className="h-9 w-9 rounded-xl bg-gradient-primary flex items-center justify-center shadow-soft">
             <Sparkles className="h-5 w-5 text-primary-foreground" />
           </div>
-          <span className="font-display font-bold text-lg">Smart Planner</span>
+          <span className="font-display font-bold text-lg">Wealth OS</span>
         </div>
         <Button asChild variant="ghost" size="sm">
           <Link to={ctaTo}>{user ? "Open app" : "Sign in"}</Link>
@@ -136,7 +136,7 @@ const Landing = () => {
 
       <footer className="container py-10 border-t border-border">
         <p className="text-center text-xs text-muted-foreground">
-          ⚠️ Smart Planner provides AI-generated guidance, not professional financial advice. For major decisions, consult a SEBI-registered advisor.
+          ⚠️ Wealth OS provides AI-generated guidance, not professional financial advice. For major decisions, consult a SEBI-registered advisor.
         </p>
       </footer>
     </div>
