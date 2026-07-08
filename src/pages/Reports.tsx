@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { PageHeader } from "@/components/Page";
 import { formatINR, formatCompactINR, computeHousehold, healthScore, scoreLabel, netWorth, planRetirement, projectGoal, computeRisks, totalExpenses, savingsRate, emiRatio } from "@/lib/finance";
-import { Printer, ShieldAlert } from "lucide-react";
+import { Printer, ShieldAlert, ExternalLink } from "lucide-react";
 
 const Reports = () => {
   const { user } = useAuth();
