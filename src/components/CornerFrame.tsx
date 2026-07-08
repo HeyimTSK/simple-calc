@@ -12,7 +12,7 @@ const CornerFrame = () => {
     <>
       <div className="corner-frame tl">
         <Link to="/" className="mono-label tracking-[0.18em] kinetic-link">
-          ◆ Smart Planner
+          ◆ Wealth OS
         </Link>
       </div>
       <div className="corner-frame tr">
