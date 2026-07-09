@@ -7,324 +7,378 @@ export type Json =
   | Json[]
 
 export type Database = {
-  // Allows to automatically instantiate createClient with right options
-  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
   __InternalSupabase: {
     PostgrestVersion: "14.5"
   }
   public: {
     Tables: {
-      assets: {
+      financial_profiles: {
         Row: {
-          created_at: string | null
-          current_value: number | null
           id: string
-          name: string
-          owner: string | null
-          type: string
+          user_id: string
+          monthly_salary: number | null
+          rent: number | null
+          food: number | null
+          utilities: number | null
+          family_support: number | null
+          existing_loans: number | null
+          emi_amount: number | null
+          savings: number | null
+          investments: number | null
+          investment_types: string[] | null
+          insurance_type: string | null
+          dependents: number | null
+          has_emergency_fund: boolean | null
+          emergency_fund_amount: number | null
+          current_age: number | null
+          retirement_age: number | null
+          life_expectancy: number | null
+          risk_profile: string | null
+          onboarding_completed: boolean | null
+          created_at: string | null
           updated_at: string | null
-          user_id: string
         }
         Insert: {
-          created_at?: string | null
-          current_value?: number | null
           id?: string
-          name: string
-          owner?: string | null
-          type: string
-          updated_at?: string | null
           user_id: string
+          monthly_salary?: number | null
+          rent?: number | null
+          food?: number | null
+          utilities?: number | null
+          family_support?: number | null
+          existing_loans?: number | null
+          emi_amount?: number | null
+          savings?: number | null
+          investments?: number | null
+          investment_types?: string[] | null
+          insurance_type?: string | null
+          dependents?: number | null
+          has_emergency_fund?: boolean | null
+          emergency_fund_amount?: number | null
+          current_age?: number | null
+          retirement_age?: number | null
+          life_expectancy?: number | null
+          risk_profile?: string | null
+          onboarding_completed?: boolean | null
+          created_at?: string | null
+          updated_at?: string | null
         }
         Update: {
-          created_at?: string | null
-          current_value?: number | null
           id?: string
-          name?: string
-          owner?: string | null
-          type?: string
-          updated_at?: string | null
           user_id?: string
-        }
-        Relationships: []
-      }
-      chat_messages: {
-        Row: {
-          content: string
-          created_at: string | null
-          id: string
-          role: string
-          user_id: string
-        }
-        Insert: {
-          content?: string
+          monthly_salary?: number | null
+          rent?: number | null
+          food?: number | null
+          utilities?: number | null
+          family_support?: number | null
+          existing_loans?: number | null
+          emi_amount?: number | null
+          savings?: number | null
+          investments?: number | null
+          investment_types?: string[] | null
+          insurance_type?: string | null
+          dependents?: number | null
+          has_emergency_fund?: boolean | null
+          emergency_fund_amount?: number | null
+          current_age?: number | null
+          retirement_age?: number | null
+          life_expectancy?: number | null
+          risk_profile?: string | null
+          onboarding_completed?: boolean | null
           created_at?: string | null
-          id?: string
-          role: string
-          user_id: string
-        }
-        Update: {
-          content?: string
-          created_at?: string | null
-          id?: string
-          role?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
-      expenses: {
-        Row: {
-          amount: number | null
-          category: string
-          created_at: string | null
-          date: string
-          id: string
-          note: string | null
-          payment_method: string | null
-          updated_at: string | null
-          user_id: string
-        }
-        Insert: {
-          amount?: number | null
-          category: string
-          created_at?: string | null
-          date: string
-          id?: string
-          note?: string | null
-          payment_method?: string | null
           updated_at?: string | null
-          user_id: string
         }
-        Update: {
-          amount?: number | null
-          category?: string
-          created_at?: string | null
-          date?: string
-          id?: string
-          note?: string | null
-          payment_method?: string | null
-          updated_at?: string | null
-          user_id?: string
-        }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "financial_profiles_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       family_members: {
         Row: {
+          id: string
+          user_id: string
+          relation: string
+          name: string
           age: number | null
-          created_at: string | null
-          dependency_level: string | null
+          monthly_income: number | null
+          monthly_expenses: number | null
+          investments: number | null
+          insurance_type: string | null
           education_goal: string | null
           education_target_year: number | null
-          has_health_insurance: boolean | null
-          id: string
-          insurance_type: string | null
-          investments: number | null
-          monthly_expenses: number | null
-          monthly_income: number | null
           monthly_medical_expense: number | null
-          name: string
-          relation: string
+          has_health_insurance: boolean | null
+          dependency_level: string | null
+          created_at: string | null
           updated_at: string | null
-          user_id: string
         }
         Insert: {
+          id?: string
+          user_id: string
+          relation: string
+          name: string
           age?: number | null
-          created_at?: string | null
-          dependency_level?: string | null
+          monthly_income?: number | null
+          monthly_expenses?: number | null
+          investments?: number | null
+          insurance_type?: string | null
           education_goal?: string | null
           education_target_year?: number | null
-          has_health_insurance?: boolean | null
-          id?: string
-          insurance_type?: string | null
-          investments?: number | null
-          monthly_expenses?: number | null
-          monthly_income?: number | null
           monthly_medical_expense?: number | null
-          name: string
-          relation: string
+          has_health_insurance?: boolean | null
+          dependency_level?: string | null
+          created_at?: string | null
           updated_at?: string | null
-          user_id: string
         }
         Update: {
-          age?: number | null
-          created_at?: string | null
-          dependency_level?: string | null
-          education_goal?: string | null
-          education_target_year?: number | null
-          has_health_insurance?: boolean | null
           id?: string
-          insurance_type?: string | null
-          investments?: number | null
-          monthly_expenses?: number | null
-          monthly_income?: number | null
-          monthly_medical_expense?: number | null
-          name?: string
+          user_id?: string
           relation?: string
-          updated_at?: string | null
-          user_id?: string
-        }
-        Relationships: []
-      }
-      financial_profiles: {
-        Row: {
-          created_at: string | null
-          current_age: number | null
-          dependents: number | null
-          emergency_fund_amount: number | null
-          emi_amount: number | null
-          existing_loans: number | null
-          family_support: number | null
-          food: number | null
-          has_emergency_fund: boolean | null
-          id: string
-          insurance_type: string | null
-          investment_types: string[] | null
-          investments: number | null
-          life_expectancy: number | null
-          monthly_salary: number | null
-          onboarding_completed: boolean | null
-          rent: number | null
-          retirement_age: number | null
-          risk_profile: string | null
-          savings: number | null
-          updated_at: string | null
-          user_id: string
-          utilities: number | null
-        }
-        Insert: {
-          created_at?: string | null
-          current_age?: number | null
-          dependents?: number | null
-          emergency_fund_amount?: number | null
-          emi_amount?: number | null
-          existing_loans?: number | null
-          family_support?: number | null
-          food?: number | null
-          has_emergency_fund?: boolean | null
-          id?: string
-          insurance_type?: string | null
-          investment_types?: string[] | null
-          investments?: number | null
-          life_expectancy?: number | null
-          monthly_salary?: number | null
-          onboarding_completed?: boolean | null
-          rent?: number | null
-          retirement_age?: number | null
-          risk_profile?: string | null
-          savings?: number | null
-          updated_at?: string | null
-          user_id: string
-          utilities?: number | null
-        }
-        Update: {
-          created_at?: string | null
-          current_age?: number | null
-          dependents?: number | null
-          emergency_fund_amount?: number | null
-          emi_amount?: number | null
-          existing_loans?: number | null
-          family_support?: number | null
-          food?: number | null
-          has_emergency_fund?: boolean | null
-          id?: string
-          insurance_type?: string | null
-          investment_types?: string[] | null
-          investments?: number | null
-          life_expectancy?: number | null
-          monthly_salary?: number | null
-          onboarding_completed?: boolean | null
-          rent?: number | null
-          retirement_age?: number | null
-          risk_profile?: string | null
-          savings?: number | null
-          updated_at?: string | null
-          user_id?: string
-          utilities?: number | null
-        }
-        Relationships: []
-      }
-      goals: {
-        Row: {
-          created_at: string | null
-          current_cost: number | null
-          current_savings: number | null
-          expected_return: number | null
-          id: string
-          inflation_rate: number | null
-          linked_member_id: string | null
-          monthly_contribution: number | null
-          name: string
-          target_year: number
-          type: string
-          updated_at: string | null
-          user_id: string
-        }
-        Insert: {
-          created_at?: string | null
-          current_cost?: number | null
-          current_savings?: number | null
-          expected_return?: number | null
-          id?: string
-          inflation_rate?: number | null
-          linked_member_id?: string | null
-          monthly_contribution?: number | null
-          name: string
-          target_year: number
-          type: string
-          updated_at?: string | null
-          user_id: string
-        }
-        Update: {
-          created_at?: string | null
-          current_cost?: number | null
-          current_savings?: number | null
-          expected_return?: number | null
-          id?: string
-          inflation_rate?: number | null
-          linked_member_id?: string | null
-          monthly_contribution?: number | null
           name?: string
-          target_year?: number
-          type?: string
+          age?: number | null
+          monthly_income?: number | null
+          monthly_expenses?: number | null
+          investments?: number | null
+          insurance_type?: string | null
+          education_goal?: string | null
+          education_target_year?: number | null
+          monthly_medical_expense?: number | null
+          has_health_insurance?: boolean | null
+          dependency_level?: string | null
+          created_at?: string | null
           updated_at?: string | null
-          user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "family_members_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      assets: {
+        Row: {
+          id: string
+          user_id: string
+          type: string
+          name: string
+          current_value: number | null
+          owner: string | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          type: string
+          name: string
+          current_value?: number | null
+          owner?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          type?: string
+          name?: string
+          current_value?: number | null
+          owner?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "assets_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       liabilities: {
         Row: {
-          created_at: string | null
-          emi: number | null
           id: string
-          interest_rate: number | null
+          user_id: string
+          type: string
           name: string
           outstanding: number | null
-          type: string
+          emi: number | null
+          interest_rate: number | null
+          created_at: string | null
           updated_at: string | null
-          user_id: string
         }
         Insert: {
-          created_at?: string | null
-          emi?: number | null
           id?: string
-          interest_rate?: number | null
+          user_id: string
+          type: string
           name: string
           outstanding?: number | null
-          type: string
+          emi?: number | null
+          interest_rate?: number | null
+          created_at?: string | null
           updated_at?: string | null
-          user_id: string
         }
         Update: {
-          created_at?: string | null
-          emi?: number | null
           id?: string
-          interest_rate?: number | null
+          user_id?: string
+          type?: string
           name?: string
           outstanding?: number | null
-          type?: string
+          emi?: number | null
+          interest_rate?: number | null
+          created_at?: string | null
           updated_at?: string | null
-          user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "liabilities_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      goals: {
+        Row: {
+          id: string
+          user_id: string
+          type: string
+          name: string
+          target_year: number
+          current_cost: number | null
+          inflation_rate: number | null
+          expected_return: number | null
+          current_savings: number | null
+          monthly_contribution: number | null
+          linked_member_id: string | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          type: string
+          name: string
+          target_year: number
+          current_cost?: number | null
+          inflation_rate?: number | null
+          expected_return?: number | null
+          current_savings?: number | null
+          monthly_contribution?: number | null
+          linked_member_id?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          type?: string
+          name?: string
+          target_year?: number
+          current_cost?: number | null
+          inflation_rate?: number | null
+          expected_return?: number | null
+          current_savings?: number | null
+          monthly_contribution?: number | null
+          linked_member_id?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "goals_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      expenses: {
+        Row: {
+          id: string
+          user_id: string
+          date: string
+          category: string
+          amount: number | null
+          note: string | null
+          payment_method: string | null
+          created_at: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          date: string
+          category: string
+          amount?: number | null
+          note?: string | null
+          payment_method?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          date?: string
+          category?: string
+          amount?: number | null
+          note?: string | null
+          payment_method?: string | null
+          created_at?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "expenses_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      chat_messages: {
+        Row: {
+          id: string
+          user_id: string
+          role: string
+          content: string
+          created_at: string | null
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          role: string
+          content?: string
+          created_at?: string | null
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          role?: string
+          content?: string
+          created_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chat_messages_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {
@@ -434,7 +488,7 @@ export type Enums<
   }
     ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
     : never = never,
-> = DefaultSchemaEnumNameOrOptions extends {
+> = DefaultSchemaTableNameOrOptions extends {
   schema: keyof DatabaseWithoutInternals
 }
   ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
